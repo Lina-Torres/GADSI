@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>login</title>
+  <link rel="stylesheet" href="resources/css/style.css">
+</head>
+<body>
+      <div class="loginbox">
+        <img src="https://previews.123rf.com/images/bloomua/bloomua1610/bloomua161000012/66079231-icono-de-vectores-modernos-de-documentos-comerciales-caj%C3%B3n-de-papeles-de-archivo-b%C3%BAsqueda-de-cat%C3%A1log.jpg" alt="" class="avatar">
+        <h1>Bienvenido</h1>
+        <form action="/auth" method="POST">
+          <p>Usuario</p>
+          <input type="text" name="user" placeholder="Inserte usuario o correo" required>
+          <p>Contraseña</p>
+          <input type="password" name="pass" placeholder="Contraseña" required>
+          <input type="submit" class="btn-login" value="Ingresar">
+          <a href="/register">Registrarse </a>
+        </form>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+   <% if (typeof alert != "undefined")  { %>
+    <script>
+    Swal.fire({
+      title:'<%= alertTitle %>',
+      text:'<%= alertMessage %>',
+      icon:'<%= alertIcon %>',
+      showConfirmButton: <%= showConfirmButton %>,
+      timer: <%= timer %>
+    }).then(()=>{
+      window.location='/<%= ruta %>'
+    })
+    </script>
+  <% } %>
+      </div>
+</body>
+</html>

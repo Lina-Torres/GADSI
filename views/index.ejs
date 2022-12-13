@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>index</title>
+        <link rel="stylesheet" href="resources/css/style.css">
+    </head>
+    <body>
+            <div id="panel">
+                <br>
+                <br>
+                <img id="foto" src= "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/1200px-User_icon_2.svg.png"alt="Foto usuario"/>
+            
+                <nav id="Consulta">                    
+                      <p><a class="consulta" href="#consultardocumento">Consultar documentos</a></p>
+                      <p><a class="consulta" href="#cargardocumento">Cargar documentos</a></p>
+                      <br>
+                      <br>
+                      <a href="logout" class="a-logout">Cerrar sesión</a>
+                </nav>
+            </div>
+            <div id="consultardocumento">
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Consulta documento" aria-label="Search">
+                        <button class="buscar btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                    </form>
+            </div>
+            <form action="/subir" method="post" enctype="multipart/form-data">
+            <div id="cargardocumento">
+                <input type="file" name="archivo" id="archivos">
+                <input type="submit" name="enviar">
+            </div>
+        </form>  
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <% if (typeof alert != "undefined")  { %>
+     <script>
+     Swal.fire({
+       title:'<%= alertTitle %>',
+       text:'<%= alertMessage %>',
+       icon:'<%= alertIcon %>',
+       showConfirmButton: <%= showConfirmButton %>,
+       timer: <%= timer %>
+     }).then(()=>{
+       window.location='/<%= ruta %>'
+     })
+     </script>
+    <% } %>
+    </body>
+</html> 
