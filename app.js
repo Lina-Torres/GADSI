@@ -3,18 +3,10 @@
 const express = require("express");
 const app = require("express")();
 const multer = require("multer");
+const path = require("path");
 
 // configuramos multer se indica carpeta destino y nombre original del archivo a subir
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "archivos/")
-    }, 
-    filename: (req, file, cb) => {
-        cb(null, file.originalname)
-    }
-})
 
-const upload = multer ({storage});
 
 
 // 2. seteamos urlencoded para capturar los datos del formulario;
@@ -136,11 +128,30 @@ app.post("/auth", async (req, res)=>{
 // 12. cargar documentos
 
 
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "archivos/")
+    }, 
+    filename: (req, file, cb) => {
+        cb(null, file.originalname)
+    }
+})
+
+const upload = multer ({storage});
+
+
+
 app.get("/index", (req, res) => {
     res.sendFile(__dirname + "/views/index.ejs")
 }) 
 
 app.post("/subir", upload.single("archivo"), (req, res) => {
+
+    const tipo= req.file.mimetype
+    const nombre = req.file.originalname
+
+    connection.query('INSERT INTO archivos SET ?',{tipo, nombre},)
+
     console.log(req.file)
     // res.send("archivo subio correctamente");
     res.render("index", {
@@ -151,10 +162,15 @@ app.post("/subir", upload.single("archivo"), (req, res) => {
         showConfirmButton: false,
         timer: 1500,
         ruta: "index#cargardocumento"
-    } )
+    }
+    )
+
+    
 })
 
 // 13. Ver documentos guardados 
+
+
 
 
 
